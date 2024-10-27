@@ -17,30 +17,7 @@ const Stack = createStackNavigator<StackParamList>();
 
 export default function Layout() {
   return (
-    // <Stack.Navigator
-    //   initialRouteName="ProductList"
-    //   screenOptions={{
-    //     headerStyle: { backgroundColor: '#A1CEDC' },
-    //     headerTintColor: '#fff',
-    //     headerTitleStyle: { fontWeight: 'bold' },
-    //   }}
-    // >
-    //   <Stack.Screen
-    //     name="ProductList"
-    //     component={ProductList}
-    //     options={{ title: 'Products' }}
-    //   />
-    //   <Stack.Screen
-    //     name="PincodeInput"
-    //     component={PincodeInput}
-    //     options={{ title: 'Enter Pincode' }}
-    //   />
-    //   <Stack.Screen
-    //     name="DeliveryEstimate"
-    //     component={DeliveryEstimate}
-    //     options={{ title: 'Delivery Estimate' }}
-    //   />
-    // </Stack.Navigator>
+  
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Login' }} />
   <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
