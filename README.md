@@ -1,4 +1,3 @@
-![Untitled1](https://github.com/user-attachments/assets/31370a3c-7e31-40ea-8b79-a2c6c41a5568)
 # Welcome to our Expo App 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). This application serves as a robust platform for [insert a brief description of your app's purpose here].
@@ -13,11 +12,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 - [Learn More](#learn-more)
 - [Join the Community](#join-the-community)
 
+
 ## Screenshots
 
 Here are some screenshots of the app:
 
-<img src="https://github.com/user-attachments/assets/31370a3c-7e31-40ea-8b79-a2c6c41a5568" alt="Final Screen" width="400"/>
+<img src="https://github.com/user-attachments/assets/9dedacf4-1afc-4fcc-b7db-8ec16ab95ac3" alt="Final Screen" width="400"/>
 
 
 <img src="https://github.com/user-attachments/assets/5fd9fffe-cd90-4fe5-a7d9-a7a348fccf68" alt="Final Screen" width="400"/>
@@ -39,6 +39,14 @@ Here are some screenshots of the app:
 
 
 <img src="https://github.com/user-attachments/assets/b1d614d5-c75f-46b6-82a7-a608f20cf223" alt="Welcome Screen" width="400"/>
+
+
+<img src="https://github.com/user-attachments/assets/8956978c-a75c-4a54-87b4-1db6c6df2be6" alt="Welcome Screen" width="400"/>
+
+
+<img src="https://github.com/user-attachments/assets/06720f5d-8900-4d5e-8279-447a5763eb2c" alt="Welcome Screen" width="400"/>
+
+
 
 
 ## Getting Started
