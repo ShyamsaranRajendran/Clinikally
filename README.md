@@ -122,6 +122,29 @@ Welcome to the Delivery Backend project! This is a Node.js application designed 
 - Mongoose 
 - dotenv for environment variable management
 
+## Getting Started
+
+To get your backend server up and running, follow these steps:
+
+1. **Clone the Repository**
+    ```bash
+   git clone https://github.com/ShyamsaranRajendran/Clinikally.git
+   ```
+2. **Navigate to the Project Directory**
+ ```bash
+   cd DeliveryBackend
+   ```
+3. **Install Dependencies**
+     ```bash
+   npm install
+   ```
+4. **Set Up Environment Variables**
+
+5. **Start the Server**
+     ```bash
+   npm start
+   ```
+
 
 ## Join the community
 
