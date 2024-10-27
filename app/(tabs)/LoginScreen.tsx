@@ -9,15 +9,17 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (email === '' || password === '') {
-      Alert.alert('Please enter your email and password');
+    if (email === 'test@gmail.com' || password === 'password123') {
+       navigation.navigate('Home');
     } else {
-      navigation.navigate('Home');
+       Alert.alert('Please enter your email and password');
     }
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.sub}>test@gmail.com</Text>
+      <Text style={styles.sub}>password123</Text>
       <Image 
         source={require('@/assets/images/background.jpeg')} 
         style={styles.image}
@@ -42,7 +44,7 @@ const LoginScreen = () => {
         title="Login"
         onPress={handleLogin}  
       />
-    </View>
+    </View> 
   );
 };
 
@@ -72,6 +74,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
+  sub:{
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 6,
+
+  }
 });
 
 export default LoginScreen;
