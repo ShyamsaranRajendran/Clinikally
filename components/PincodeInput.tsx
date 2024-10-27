@@ -21,7 +21,7 @@ const PincodeEstimate: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.159.209:5000/api/estimateDeliveryDate', {
+      const response = await axios.post('http://192.168.1.100:5000/api/estimateDeliveryDate', {
         productId: product["Product ID"], 
         pincode,
       });

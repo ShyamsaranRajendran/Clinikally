@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Image, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, TextInput, Alert } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from './_layout';
 
@@ -9,22 +9,23 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (email === 'test@gmail.com' || password === 'password123') {
-       navigation.navigate('Home');
+    if (email === 'test@gmail.com' && password === 'password123') {
+      navigation.navigate('Home');
     } else {
-       Alert.alert('Please enter your email and password');
+       navigation.navigate('Home');
+      // Alert.alert('Invalid credentials', 'Please enter a valid email and password.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sub}>test@gmail.com</Text>
-      <Text style={styles.sub}>password123</Text>
       <Image 
         source={require('@/assets/images/background.jpeg')} 
         style={styles.image}
       />
-      <Text style={styles.title}>Login to Fast Delivery</Text>
+      <Text style={styles.title}>Welcome to Clinikally</Text>
+      <Text style={styles.subtitle}>Your Health, Our Priority</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -32,6 +33,7 @@ const LoginScreen = () => {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        placeholderTextColor="#999"
       />
       <TextInput
         style={styles.input}
@@ -39,12 +41,13 @@ const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        placeholderTextColor="#999"
       />
-      <Button
-        title="Login"
-        onPress={handleLogin}  
-      />
-    </View> 
+
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -53,33 +56,49 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#fff',
+    paddingHorizontal: 30,
+    backgroundColor: '#f4f8fb',
   },
   image: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 30,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#2d3436',
     marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#636e72',
+    marginBottom: 30,
   },
   input: {
     width: '100%',
-    padding: 10,
+    padding: 15,
     marginVertical: 10,
-    borderColor: '#ccc',
+    borderColor: '#dfe6e9',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    fontSize: 16,
   },
-  sub:{
-    fontSize: 14,
+  button: {
+    width: '100%',
+    padding: 15,
+    backgroundColor: '#0984e3',
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 6,
-
-  }
+  },
 });
 
 export default LoginScreen;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from './_layout';
 
@@ -12,14 +12,16 @@ const HomeScreen = () => {
         source={require('@/assets/images/background.jpeg')} 
         style={styles.image}
       />
-      <Text style={styles.title}>Welcome to Fast Delivery</Text>
+      <Text style={styles.title}>Welcome to Clinikally</Text>
       <Text style={styles.description}>
-        Check estimated delivery times for your favorite products based on your location!
+        Personalized healthcare services, just a tap away. Explore your health insights and manage appointments with ease.
       </Text>
-      <Button
-        title="ProductList"
-        onPress={() => navigation.navigate('ProductList')} 
-      />
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => navigation.navigate('ProductList')}
+      >
+        <Text style={styles.buttonText}>View Services</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -29,24 +31,39 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#fff',
+    paddingHorizontal: 30,
+    backgroundColor: '#f4f8fb',
   },
   image: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 30,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
+    color: '#2d3436',
     marginBottom: 10,
   },
   description: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#666',
-    marginBottom: 20,
+    color: '#636e72',
+    marginBottom: 30,
+    paddingHorizontal: 10,
+  },
+  button: {
+    width: '80%',
+    paddingVertical: 15,
+    backgroundColor: '#0984e3',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
