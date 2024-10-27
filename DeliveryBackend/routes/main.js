@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require('../models/Product');
 const Pincode = require('../models/Pincode');
 const Stock = require('../models/stocks');
-
+const Order = require('../models/order');
 // Function to calculate estimated delivery date
 const calculateDeliveryDate = (daysToDeliver) => {
     if (typeof daysToDeliver !== 'number' || isNaN(daysToDeliver)) {
@@ -41,14 +41,12 @@ router.post('/estimateDeliveryDate', async (req, res) => {
         }
         console.log(`Fetched Pincode Data: ${JSON.stringify(pincodeData)}`);
 
-        // Ensure TAT is a valid number
         const daysToDeliver = Number(pincodeData.TAT);
         if (isNaN(daysToDeliver)) {
             console.error(`Invalid TAT value for pincode ${pincode}:`, pincodeData.TAT);
             return res.status(400).json({ error: 'Invalid TAT value for this pincode' });
         }
 
-        // Calculate estimated delivery date
         const estimatedDeliveryDate = calculateDeliveryDate(daysToDeliver);
         res.json({ estimatedDeliveryDate });
     } catch (error) {
@@ -57,6 +55,32 @@ router.post('/estimateDeliveryDate', async (req, res) => {
     }
 });
 
+router.post('/confirmOrder', async (req, res) => {
+  const { productId, address, pincode, name, phoneNumber } = req.body;
+
+  if (!productId || !address || !pincode || !name || !phoneNumber) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    const newOrder = new Order({
+      productId,
+      address,
+      pincode,
+      name,
+      phoneNumber,
+      orderDate: new Date(),
+      status: 'Pending',
+    });
+
+    await newOrder.save();
+
+    res.status(201).json({ message: 'Order confirmed successfully!', orderId: newOrder._id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Unable to confirm order. Please try again later.' });
+  }
+});
 
 
 

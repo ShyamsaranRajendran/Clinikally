@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const estimateRoute = require('./routes/estimate.js');
+const estimateRoute = require('./routes/main.js');
 
 dotenv.config();
 connectDB();

@@ -5,8 +5,8 @@ import { StackParamList } from './_layout';
 
 const LoginScreen = () => {
   const navigation = useNavigation<NavigationProp<StackParamList>>();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test@gmail.com');
+  const [password, setPassword] = useState('password123');
 
   const handleLogin = () => {
     if (email === 'test@gmail.com' && password === 'password123') {
@@ -20,7 +20,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('@/assets/images/background.jpeg')} 
+        source={require('@/assets/images/logo.jpeg')} 
         style={styles.image}
       />
       <Text style={styles.title}>Welcome to Clinikally</Text>
