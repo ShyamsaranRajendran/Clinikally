@@ -1,8 +1,22 @@
 // RootStackParamList.ts
 
+export interface Product {
+  _id: { $oid: string };
+  "Product ID": number;
+  "Product Name": string;
+  Price: number;
+  imageUrl: string;
+  lowStock: boolean;
+  size: number;
+  inStock: boolean;
+}
+
+
 export type RootStackParamList = {
   ProductList: undefined;
   PincodeInput: { product: Product };
+  ProductPage: { product: Product };
+  DeliveryPage: { product: Product };
 };
 
 export interface Product {
@@ -10,7 +24,8 @@ export interface Product {
   "Product ID": number;
   "Product Name": string;
   Price: number;
-      inStock: boolean; // Add this line to include inStock property
-
+  imageUrl: string;
+  lowStock: boolean;
+  size: number;
+  inStock: boolean;
 }
-

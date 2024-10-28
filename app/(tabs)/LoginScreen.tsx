@@ -1,19 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, TextInput, Alert } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { StackParamList } from './_layout';
+import { RootStackParamList } from './RootStackParamList'; // Assuming this is correctly defined in another file
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
-  const navigation = useNavigation<NavigationProp<StackParamList>>();
-  const [email, setEmail] = useState('test@gmail.com');
-  const [password, setPassword] = useState('password123');
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [email, setEmail] = useState('s@gamil.com');
+  const [password, setPassword] = useState('dfg');
 
-  const handleLogin = () => {
-    if (email === 'test@gmail.com' && password === 'password123') {
-      navigation.navigate('Home');
-    } else {
-       navigation.navigate('Home');
-      // Alert.alert('Invalid credentials', 'Please enter a valid email and password.');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://192.168.159.209:5000/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        await AsyncStorage.setItem('token', data.token);  // Store token
+        Alert.alert('Login Successful', 'Welcome back!');
+        navigation.navigate('Home'); // Navigate to Home screen on success
+      } else {
+        Alert.alert('Login Failed', data.error || 'Invalid email or password.');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Unable to connect to the server');
+      console.error(error);
     }
   };
 
@@ -46,6 +60,15 @@ const LoginScreen = () => {
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      {/* Forgot Password and Sign Up buttons */}
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.signUp}>Don’t have an account? Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -98,6 +121,18 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  forgotPassword: {
+    color: '#0984e3',
+    fontSize: 14,
+    marginTop: 20,
+    textDecorationLine: 'underline',
+  },
+  signUp: {
+    color: '#636e72',
+    fontSize: 14,
+    marginTop: 10,
+    textDecorationLine: 'underline',
   },
 });
 

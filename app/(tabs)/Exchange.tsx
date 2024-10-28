@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { StackParamList } from './_layout';
+import { RootStackParamList } from './RootStackParamList'; // Assuming this is correctly defined in another file
 
 const Exchange = () => {
-  const navigation = useNavigation<NavigationProp<StackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <ScrollView style={styles.container}>
@@ -14,7 +14,7 @@ const Exchange = () => {
         <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('ProductList')}>
           <FontAwesome name="leaf" size={24} color="#FF6B00" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('DeliveryPage')}>
+        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('ProductList')}>
           <FontAwesome name="truck" size={24} color="#FF6B00" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('Exchange')}>
