@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // For local storage
 
 const ResetPasswordScreen = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     if (newPassword !== confirmPassword) {
       Alert.alert("Passwords do not match");
       return;
     }
 
-    Alert.alert("Password reset successful");
+    try {
+            const token = await AsyncStorage.getItem('token');
+
+      const response = await fetch('http://YOUR_BACKEND_URL/reset-password', { // replace with your backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Include the JWT token if required for authentication
+        },
+        body: JSON.stringify({ newPassword }), // Send the new password to the backend
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong!');
+      }
+
+      Alert.alert("Success", "Password reset successful");
+    } catch (error) {
+      Alert.alert("Error", error.message); 
+    }
   };
 
   return (
@@ -37,7 +59,6 @@ const ResetPasswordScreen = () => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -77,6 +98,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 
 export default ResetPasswordScreen;

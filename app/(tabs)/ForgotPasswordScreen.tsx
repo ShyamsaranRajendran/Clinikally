@@ -4,9 +4,33 @@ import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'reac
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
 
-  const handleForgotPassword = () => {
-    // Call backend to initiate password reset (send OTP)
-    Alert.alert('Check your email for OTP');
+  const handleForgotPassword = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email address.');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://clinikally-07us.onrender.com/user/forgot-password', { // replace with your backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }), // Send the email entered by the user
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong!');
+      }
+
+      // If OTP sent successfully
+      Alert.alert('Success', 'Check your email for OTP');
+      // Optionally navigate to the OTP screen here
+    } catch (error) {
+      Alert.alert('Error', error.message); // Show error message
+    }
   };
 
   return (
@@ -17,6 +41,7 @@ const ForgotPasswordScreen = () => {
         style={styles.input}
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
       />
       <TouchableOpacity style={styles.button} onPress={handleForgotPassword}>
         <Text style={styles.buttonText}>Send OTP</Text>

@@ -21,7 +21,7 @@ const RegistrationScreen = () => {
     }
 
     try {
-      const response = await fetch('http://192.168.159.209:5000/user/register', {
+      const response = await fetch('https://clinikally-07us.onrender.com/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

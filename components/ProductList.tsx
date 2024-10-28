@@ -20,7 +20,7 @@ const ProductList = () => {
         try {
             if (loading) return; // Prevent multiple requests
             setLoading(true);
-            const response = await axios.get(`http://192.168.159.209:5000/api/product?page=${page}&limit=10&search=${query}`);
+            const response = await axios.get(`https://clinikally-07us.onrender.com/api/product?page=${page}&limit=10&search=${query}`);
             const fetchedProducts = response.data.products;
 
             if (fetchedProducts && fetchedProducts.length) {

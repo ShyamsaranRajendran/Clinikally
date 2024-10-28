@@ -4,9 +4,28 @@ import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'reac
 const OTPScreen = () => {
   const [otp, setOtp] = useState('');
 
-  const handleVerifyOTP = () => {
-    // Call backend to verify OTP
-    Alert.alert('OTP Verified, you may now reset your password');
+  const handleVerifyOTP = async () => {
+    try {
+      const response = await fetch('https://clinikally-07us.onrender.com/user/verify-otp', { // replace with your backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ OTP: otp }), // Send the OTP entered by the user
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong!');
+      }
+
+      // If verification is successful
+      Alert.alert('Success', data.message); // Show success message
+      // Proceed to reset password screen or other action
+    } catch (error) {
+      Alert.alert('Error', error.message); // Show error message
+    }
   };
 
   return (

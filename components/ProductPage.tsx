@@ -36,7 +36,7 @@ const ProductPage = () => {
       }
 
       const response = await axios.post(
-        'http://192.168.159.209:5000/cart/add',
+        'https://clinikally-07us.onrender.com/cart/add',
         { productId: product._id },
         { headers: { 'authorization': `Bearer ${token}` } }
       );
