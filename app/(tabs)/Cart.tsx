@@ -12,7 +12,7 @@ const CartScreen = () => {
         const fetchCartItems = async () => {
             try {
                 const token = await AsyncStorage.getItem('token');
-                const response = await axios.get('http://192.168.159.209:5000/cart', {
+                const response = await axios.get('https://clinikally-07us.onrender.com/cart', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -31,7 +31,7 @@ const CartScreen = () => {
     const handleRemoveItem = async (cartItemId: string) => {
         try {
             const token = await AsyncStorage.getItem('token');
-            await axios.delete(`http://192.168.159.209:5000/cart/remove/${cartItemId}`, {
+            await axios.delete(`https://clinikally-07us.onrender.com/cart/remove/${cartItemId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
