@@ -15,7 +15,7 @@ const ResetPasswordScreen = () => {
     try {
             const token = await AsyncStorage.getItem('token');
 
-      const response = await fetch('http://YOUR_BACKEND_URL/reset-password', { // replace with your backend URL
+      const response = await fetch('https://clinikally-07us.onrender.com/user/reset-password', { // replace with your backend URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
