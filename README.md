@@ -142,7 +142,7 @@ To get your backend server up and running, follow these steps:
 
 5. **Start the Server**
      ```bash
-   npm start
+   node server.js
    ```
 
 
